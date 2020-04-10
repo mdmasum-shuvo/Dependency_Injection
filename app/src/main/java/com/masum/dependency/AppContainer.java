@@ -14,5 +14,5 @@ public class AppContainer {
 
     public UserRepository userRepository = new UserRepository(userLocalDataSource, userRemoteDataSource);
 
-    public LoginViewModelFactory loginViewModelFactory = new LoginViewModelFactory(userRepository);
+    public LoginContainer loginContainer;
 }

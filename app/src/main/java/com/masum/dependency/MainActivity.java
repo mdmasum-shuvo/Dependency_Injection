@@ -8,14 +8,24 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
+    private LoginUserData loginUserData;
+    private AppContainer appContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppContainer appContainer = ((MyApplication) getApplication()).appContainer;
+        appContainer = ((MyApplication) getApplication()).appContainer;
 
-        loginViewModel = appContainer.loginViewModelFactory.create();
+        loginViewModel = appContainer.loginContainer.loginViewModelFactory.create();
+        loginUserData = appContainer.loginContainer.loginData;
 
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        appContainer.loginContainer = null;
+        super.onDestroy();
     }
 }
